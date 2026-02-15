@@ -8,7 +8,8 @@
 import Foundation
 
 struct JobResponse: Codable {
-    let data: [Company]
+    var data: [Company]
+    let meta: Meta
 }
 
 struct Company: Codable {
@@ -34,6 +35,20 @@ struct Company: Codable {
         case jobTypes = "job_types"
         case location
         case createdAt = "created_at"
+    }
+}
+
+struct Meta: Codable {
+    let currentPage: Int
+    let from: Int
+    let perPage: Int
+    let to: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case currentPage = "current_page"
+        case perPage = "per_page"
+        case from
+        case to
     }
 }
 
