@@ -9,6 +9,18 @@ import SwiftUI
 
 struct JobHoper: View {
     @StateObject private var viewModel = JobViewModel()
+    @State private var searchText = ""
+    
+    var filteredJobs: [Company] {
+        if searchText.isEmpty {
+            return viewModel.displayedJobs
+        } else {
+            return viewModel.allJobs.filter {
+                $0.title.localizedStandardContains(searchText) ||
+                $0.companyName.localizedStandardContains(searchText)
+            }
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,22 +28,40 @@ struct JobHoper: View {
                 Text("Job Hoper")
                     .foregroundColor(.blue)
                     .font(.system(size: 22, weight: .semibold))
-                    .padding(.leading, 15)
                     .textCase(.uppercase)
+                    .padding(.leading, 15)
+            }
+            
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(.blue)
+                
+                TextField("Search jobs...", text: $searchText)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                 
                 Spacer()
                 
-                Image(systemName: "bell.badge")
-                    .resizable()
-                    .frame(width: 20, height: 25)
-                    .padding(.trailing, 15)
-                
+                if !searchText.isEmpty {
+                    Image(systemName: "x.circle.fill")
+                        .foregroundColor(.red)
+                        .onTapGesture { searchText = "" }
+                }
             }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(9)
+            .padding(.vertical, 5)
+            .shadow(radius: 4)
+            .padding(.horizontal, 15)
             
             List {
-                ForEach(viewModel.displayedJobs, id: \.slug) { job in
+                ForEach(filteredJobs, id: \.slug) { job in
                     CardView(company: job)
                         .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 15)
                         .onAppear {
                             if job.slug == viewModel.displayedJobs.last?.slug {
                                 Task { await viewModel.loadMoreIfNeeded() }

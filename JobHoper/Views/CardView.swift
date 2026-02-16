@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CardView: View {
-    var company: Company?
     @State var isPresent: Bool = false
+    
+    var company: Company?
     
     var body: some View {
         VStack(spacing: 1) {
@@ -26,9 +27,9 @@ struct CardView: View {
                     }
                 
                 VStack(alignment: .leading,spacing: 10) {
-                    Text(company?.title ?? "Sr. iOS Developer")
+                    Text(company?.title ?? "")
                         .font(.system(size: 17, weight: .semibold))
-                    Text(company?.companyName ?? "Metromart")
+                    Text(company?.companyName ?? "")
                         .font(.system(size: 14, weight: .regular))
                     
                     HStack {
@@ -40,7 +41,7 @@ struct CardView: View {
                             .foregroundColor(.white)
                             .cornerRadius(3)
                         
-                        Text(company?.location ?? "Makati City, Philippines")
+                        Text(company?.location ?? "")
                             .padding(.horizontal, 10)
                             .font(.system(size: 12, weight: .semibold))
                             .frame(height: 20)
@@ -49,10 +50,10 @@ struct CardView: View {
                             .cornerRadius(3)
                     }
                     
-                    Text(company?.tags.joined(separator: ", ") ?? "Full time, Hybrid")
+                    Text(company?.tags.joined(separator: ", ") ?? "")
                         .font(.system(size: 14, weight: .regular))
                     
-                    Text("Easily Apply")
+                    Text(company?.jobTypes.joined(separator: ", ") ?? "")
                         .font(.system(size: 14, weight: .regular))
                     
                 }
