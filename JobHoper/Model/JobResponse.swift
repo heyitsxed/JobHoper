@@ -24,7 +24,7 @@ struct Company: Codable {
     let location: String
     let createdAt: Int
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case slug
         case companyName = "company_name"
         case title
@@ -44,7 +44,7 @@ struct Meta: Codable {
     let perPage: Int
     let to: Int
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case currentPage = "current_page"
         case perPage = "per_page"
         case from

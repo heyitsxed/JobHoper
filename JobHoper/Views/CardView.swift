@@ -33,7 +33,7 @@ struct CardView: View {
                         .font(.system(size: 14, weight: .regular))
                     
                     HStack {
-                        Text(company?.remote == true ? "Work from Home" : "Work from Office")
+                        Text(company?.remote == true ? StringConstants.wfh.rawValue : StringConstants.wfo.rawValue)
                             .padding(.horizontal, 10)
                             .font(.system(size: 12, weight: .semibold))
                             .frame(height: 20)

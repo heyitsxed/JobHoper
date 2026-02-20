@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isShowHomePage: Bool = false
+    private let splashScreenDurationn: Double = 2.5
+    
     var body: some View {
-        JobHoper()
+        ZStack {
+            HomePageView()
+            
+            if !isShowHomePage {
+                SplashScreen()
+                    .transition(.opacity)
+                    .zIndex(1)
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + splashScreenDurationn) {
+                withAnimation { self.isShowHomePage = true }
+            }
+        }
     }
 }
 

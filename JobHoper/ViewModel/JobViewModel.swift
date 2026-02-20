@@ -19,6 +19,8 @@ class JobViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isLoadingMore: Bool = false
     
+    @Published var searchText = ""
+    
     private let pageSize: Int = 20
     private let apiPageSize: Int = 100
     
@@ -26,6 +28,17 @@ class JobViewModel: ObservableObject {
     
     var hasMoreDisplayJobs: Bool {
         currentIndex < allJobs.count
+    }
+        
+    var filteredJobs: [Company] {
+        if searchText.isEmpty {
+            return displayedJobs
+        } else {
+            return allJobs.filter {
+                $0.title.localizedStandardContains(searchText) ||
+                $0.companyName.localizedStandardContains(searchText)
+            }
+        }
     }
     
     func getJob(page: Int = 1) async throws {
