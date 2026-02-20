@@ -18,6 +18,9 @@ struct HomePageView: View {
                     .font(.system(size: 22, weight: .semibold))
                     .textCase(.uppercase)
                     .padding(.leading, 15)
+                    .onTapGesture {
+                        AppSession.shared.logout()
+                    }
             }
             
             List {
@@ -87,7 +90,4 @@ struct HomePageView: View {
     }
 }
 
-#Preview {
-    HomePageView()
-}
 

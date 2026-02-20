@@ -9,11 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isShowHomePage: Bool = false
+    
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("userName") var userName: Bool = false
+    
     private let splashScreenDurationn: Double = 2.5
     
     var body: some View {
         ZStack {
-            HomePageView()
+            Group {
+                if isLoggedIn {
+                    HomePageView()
+                } else {
+                    LoginView()
+                }
+            }
+            .animation(.easeOut, value: isLoggedIn)
             
             if !isShowHomePage {
                 SplashScreen()
