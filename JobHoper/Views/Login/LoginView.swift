@@ -94,6 +94,9 @@ struct LoginView: View {
         .fullScreenCover(isPresented: $isShowSignUp) {
             SignUpView()
         }
+        .alert(isPresented: $viewModel.isShowErrorMessage) {
+            Alert(title: Text("Login error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
+        }
     }
 }
 

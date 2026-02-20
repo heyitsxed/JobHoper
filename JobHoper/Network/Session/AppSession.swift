@@ -9,22 +9,28 @@ import SwiftUI
 
 class AppSession {
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
-    @AppStorage("userName") var userName: String = ""
+    @AppStorage("fullName") var fullName: String = ""
+    @AppStorage("email") var email: String = ""
+    @AppStorage("password") var password: String = ""
     
     static let shared = AppSession()
 
     private init() {}
     
-    func login(user: String) {
-        userName = user
+    func login(user: String, password: String) {
+        email = user
+        self.password = password
         isLoggedIn = true
     }
     
     func logout() {
-        userName = ""
+        email = ""
+        password = ""
         isLoggedIn = false
-        
-        UserDefaults.standard.removeObject(forKey: "isLoggedIn")
-        UserDefaults.standard.removeObject(forKey: "userName")
+    }
+    
+    func signUp(email: String, password: String) {
+        self.email = email
+        self.password = password
     }
 }

@@ -11,29 +11,36 @@ import Foundation
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
+    
+    @Published var fullName = ""
+    @Published var newEmail = ""
+    @Published var newPassword = ""
     @Published var confirmPassword = ""
+    
     @Published var isLoading = false
     @Published var isLoggedIn = false
-    @Published var fullName = ""
+    
     @Published var errorMessage: String = ""
     @Published var isShowErrorMessage: Bool = false
     
     func login() {
         isLoading = true
-        isLoggedIn = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.isLoading = false
-            UserDefaults.standard.set(true, forKey: "isLoggedIn")
-            UserDefaults.standard.set(self.email, forKey: "email")
+            guard self.email == AppSession.shared.email && self.password == AppSession.shared.password else {
+                self.isShowErrorMessage = true
+                self.errorMessage = "Incorrect Username or Password"
+                return
+            }
             
-            print("Login tapped:", self.email, self.password)
+            AppSession.shared.login(user: self.email, password: self.password)
         }
+        
+        self.isLoading = false
     }
     
     func signUp() {
         guard password == confirmPassword else {
-            print("Passwords do not match")
             errorMessage = "Passwords do not match"
             isShowErrorMessage = true
             return
@@ -43,7 +50,9 @@ class LoginViewModel: ObservableObject {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.isLoading = false
-            print("Sign Up:", self.fullName, self.email)
+            AppSession.shared.signUp(email: self.email, password: self.password)
+            AppSession.shared.fullName = self.fullName
+            print("xxx Sign Up:", self.fullName, self.email)
         }
     }
 
