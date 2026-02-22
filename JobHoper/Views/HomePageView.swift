@@ -19,7 +19,7 @@ struct HomePageView: View {
                     .textCase(.uppercase)
                     .padding(.leading, 15)
                     .onTapGesture {
-                        AppSession.shared.logout()
+                        AppSessionManager.shared.logout()
                     }
             }
             

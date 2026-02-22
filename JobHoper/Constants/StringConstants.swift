@@ -39,4 +39,8 @@ enum StringConstants: String {
     
     case signupSuccessTitle = "Account Created"
     case signUpSuccessDecription = "Your account has been successfully created. You can now log in. ✅"
+    case passwordCannotBeEmpty = "Password cannot be empty"
+    case enterValidEmail = "Please enter a valid email address"
+    case passwordNotMatch = "Password is not matched"
+    case fullNameCannotBeEmpty = "Full name cannot be empty"
 }

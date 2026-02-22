@@ -16,7 +16,7 @@ class LoginViewModel: ObservableObject {
     @Published var isShowErrorMessage: Bool = false
     
     var isExistingUser: Bool {
-        self.currentEmail == AppSession.shared.existingEmail && self.currentPassword == AppSession.shared.existingPassword
+        AppSessionManager.shared.users.contains(where: { $0.email == currentEmail && $0.password == currentPassword })
     }
     
     func login() {
@@ -29,7 +29,9 @@ class LoginViewModel: ObservableObject {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            AppSessionManager.shared.signIn()
             self.isLoading = false
+            
         }
     }
 }
