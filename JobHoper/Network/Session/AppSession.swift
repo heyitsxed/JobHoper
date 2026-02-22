@@ -17,12 +17,6 @@ class AppSession {
 
     private init() {}
     
-    func login(email: String, password: String, completion: (Bool) -> Void) {
-        existingEmail = email
-        existingPassword = password
-        isLoggedIn = true
-    }
-    
     func logout() {
         existingEmail = ""
         existingPassword = ""

@@ -27,12 +27,9 @@ class LoginViewModel: ObservableObject {
             isLoading = false
             return
         }
-                
-        AppSession.shared.login(email: self.currentEmail, password: self.currentPassword) { success in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.isLoading = false
-                if !success { self.isShowErrorMessage = true }
-            }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.isLoading = false
         }
     }
 }
