@@ -9,51 +9,30 @@ import Combine
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
+    @Published var currentEmail: String = ""
+    @Published var currentPassword: String = ""
     
-    @Published var fullName = ""
-    @Published var newEmail = ""
-    @Published var newPassword = ""
-    @Published var confirmPassword = ""
-    
-    @Published var isLoading = false
-    @Published var isLoggedIn = false
-    
-    @Published var errorMessage: String = ""
+    @Published var isLoading: Bool = false
     @Published var isShowErrorMessage: Bool = false
+    
+    var isExistingUser: Bool {
+        self.currentEmail == AppSession.shared.existingEmail && self.currentPassword == AppSession.shared.existingPassword
+    }
     
     func login() {
         isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            guard self.email == AppSession.shared.email && self.password == AppSession.shared.password else {
-                self.isShowErrorMessage = true
-                self.errorMessage = "Incorrect Username or Password"
-                return
-            }
-            
-            AppSession.shared.login(user: self.email, password: self.password)
-        }
-        
-        self.isLoading = false
-    }
-    
-    func signUp() {
-        guard password == confirmPassword else {
-            errorMessage = "Passwords do not match"
+        guard isExistingUser else {
             isShowErrorMessage = true
+            isLoading = false
             return
         }
-
-        isLoading = true
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.isLoading = false
-            AppSession.shared.signUp(email: self.email, password: self.password)
-            AppSession.shared.fullName = self.fullName
-            print("xxx Sign Up:", self.fullName, self.email)
+                
+        AppSession.shared.login(email: self.currentEmail, password: self.currentPassword) { success in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.isLoading = false
+                if !success { self.isShowErrorMessage = true }
+            }
         }
     }
-
 }

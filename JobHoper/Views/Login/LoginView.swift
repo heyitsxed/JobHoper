@@ -32,7 +32,7 @@ struct LoginView: View {
                     Image(systemName: "envelope.fill")
                         .foregroundColor(.blue)
 
-                    TextField(StringConstants.email.rawValue, text: $viewModel.email)
+                    TextField(StringConstants.email.rawValue, text: $viewModel.currentEmail)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -43,7 +43,7 @@ struct LoginView: View {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.blue)
 
-                    SecureField(StringConstants.password.rawValue, text: $viewModel.password)
+                    SecureField(StringConstants.password.rawValue, text: $viewModel.currentPassword)
                 }
                 .modifier(InputFieldStyle())
                 
@@ -95,7 +95,7 @@ struct LoginView: View {
             SignUpView()
         }
         .alert(isPresented: $viewModel.isShowErrorMessage) {
-            Alert(title: Text("Login error"), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
+            Alert(title: Text(StringConstants.loginFailedTitle.rawValue), message: Text(StringConstants.loginFailedDescription.rawValue), dismissButton: .default(Text(StringConstants.ok.rawValue)))
         }
     }
 }

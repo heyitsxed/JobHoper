@@ -10,27 +10,27 @@ import SwiftUI
 class AppSession {
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     @AppStorage("fullName") var fullName: String = ""
-    @AppStorage("email") var email: String = ""
-    @AppStorage("password") var password: String = ""
+    @AppStorage("email") var existingEmail: String = ""
+    @AppStorage("password") var existingPassword: String = ""
     
     static let shared = AppSession()
 
     private init() {}
     
-    func login(user: String, password: String) {
-        email = user
-        self.password = password
+    func login(email: String, password: String, completion: (Bool) -> Void) {
+        existingEmail = email
+        existingPassword = password
         isLoggedIn = true
     }
     
     func logout() {
-        email = ""
-        password = ""
+        existingEmail = ""
+        existingPassword = ""
         isLoggedIn = false
     }
     
     func signUp(email: String, password: String) {
-        self.email = email
-        self.password = password
+        self.existingEmail = email
+        self.existingPassword = password
     }
 }
