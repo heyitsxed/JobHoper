@@ -28,7 +28,7 @@ class SignUpViewModel: ObservableObject {
 
     var fullNameError: String? {
         guard isValidatingUser else { return nil }
-        if newFullName.isEmpty { return StringConstants.fullNameCannotBeEmpty.rawValue }
+        if !isFullNameValid { return StringConstants.enterValidFullName.rawValue }
         return nil
     }
     

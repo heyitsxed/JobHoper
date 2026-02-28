@@ -42,5 +42,5 @@ enum StringConstants: String {
     case passwordCannotBeEmpty = "Password cannot be empty"
     case enterValidEmail = "Please enter a valid email address"
     case passwordNotMatch = "Password is not matched"
-    case fullNameCannotBeEmpty = "Full name cannot be empty"
+    case enterValidFullName = "Please enter a valid Full name."
 }
