@@ -9,17 +9,25 @@ import SwiftUI
 
 struct HomePageView: View {
     @StateObject private var viewModel = JobViewModel()
+    @State private var isShowProfile: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(StringConstants.jobTitle.rawValue)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.black)
                     .font(.system(size: 22, weight: .semibold))
                     .textCase(.uppercase)
                     .padding(.leading, 15)
+                
+                Spacer()
+                
+                Image(systemName: "person.circle")
+                    .font(.system(size: 25))
+                    .padding(.trailing, 15)
+                    .foregroundColor(.black)
                     .onTapGesture {
-                        AppSessionManager.shared.logout()
+                        isShowProfile = true
                     }
             }
             
@@ -87,7 +95,13 @@ struct HomePageView: View {
         .onAppear {
             Task { try await viewModel.getJob() }
         }
+        .fullScreenCover(isPresented: $isShowProfile) {
+            ProfileView()
+        }
     }
 }
 
 
+#Preview {
+    HomePageView()
+}
