@@ -9,7 +9,8 @@ import Combine
 import Foundation
 
 class SignUpViewModel: ObservableObject {
-    @Published var newFullName = ""
+    @Published var newFirstName = ""
+    @Published var newLastName = ""
     @Published var newEmail = ""
     @Published var newPassword = ""
     @Published var confirmPassword = ""
@@ -18,7 +19,7 @@ class SignUpViewModel: ObservableObject {
     @Published var isSuccessMessage: Bool = false
     @Published var isValidatingUser: Bool = false
     
-    var isFullNameValid: Bool { !newFullName.isEmpty && newFullName.count > 8 }
+    var isFullNameValid: Bool { !newFirstName.isEmpty && newFirstName.count > 2 && !newLastName.isEmpty && newLastName.count > 2 }
     var isPasswordValid: Bool { !newPassword.isEmpty && newPassword == confirmPassword }
     
     var isEmailValid: Bool {
@@ -64,7 +65,7 @@ class SignUpViewModel: ObservableObject {
         }
         
         let workItem = DispatchWorkItem {
-            AppSessionManager.shared.signUp(fullname: self.newFullName, email: self.newEmail, password: self.newPassword)
+            AppSessionManager.shared.signUp(firstName: self.newFirstName, lastName: self.newLastName, email: self.newEmail, password: self.newPassword)
             self.isSuccessMessage = true
             self.isLoading = false
         }

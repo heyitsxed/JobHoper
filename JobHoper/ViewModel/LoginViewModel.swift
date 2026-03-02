@@ -29,7 +29,9 @@ class LoginViewModel: ObservableObject {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            AppSessionManager.shared.signIn()
+            if let user = AppSessionManager.shared.users.first(where: { $0.email == self.currentEmail }) {
+                AppSessionManager.shared.signIn(user: user)
+            }
             self.isLoading = false
             
         }

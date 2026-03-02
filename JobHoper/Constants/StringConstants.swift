@@ -26,6 +26,8 @@ enum StringConstants: String {
     
     case createAccount = "Create Account"
     case signUpGetStarted = "Sign up to get started"
+    case firstName = "First Name"
+    case lastName = "Last Name"
     case fullName = "Full Name"
     case confirmPassword = "Confirm Password"
     
@@ -43,4 +45,10 @@ enum StringConstants: String {
     case enterValidEmail = "Please enter a valid email address"
     case passwordNotMatch = "Password is not matched"
     case enterValidFullName = "Please enter a valid Full name."
+    
+    case phone = "Phone"
+    case address = "Address"
+    case joined = "Joined"
+    case back = "BACK"
+    case logout = "LOGOUT"
 }

@@ -29,19 +29,36 @@ struct SignUpView: View {
             
             VStack(spacing: 16) {
                 HStack {
-                    Image(systemName: "person.fill")
-                        .foregroundColor(.blue)
-                    
-                    TextField(StringConstants.fullName.rawValue, text: $viewModel.newFullName)
-                        .autocapitalization(.words)
-                    
-                    if let fullNameError = viewModel.fullNameError {
-                        Text(fullNameError)
-                            .foregroundColor(.red)
-                            .font(.caption)
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.blue)
+                        
+                        TextField(StringConstants.firstName.rawValue, text: $viewModel.newFirstName)
+                            .autocapitalization(.words)
+                        
+                        if let fullNameError = viewModel.fullNameError {
+                            Text(fullNameError)
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        }
                     }
+                    .modifier(InputFieldStyle())
+                    
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.blue)
+                        
+                        TextField(StringConstants.lastName.rawValue, text: $viewModel.newLastName)
+                            .autocapitalization(.words)
+                        
+                        if let fullNameError = viewModel.fullNameError {
+                            Text(fullNameError)
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        }
+                    }
+                    .modifier(InputFieldStyle())
                 }
-                .modifier(InputFieldStyle())
                 
                 HStack {
                     Image(systemName: "envelope.fill")
