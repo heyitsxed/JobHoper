@@ -16,7 +16,7 @@ struct ProfileView: View {
             VStack(spacing: 10) {
                 ImageView(viewModel: viewModel)
                 
-                Text("John Doe")
+                Text("\(AppSessionManager.shared.fullName ?? "")")
                     .font(.system(size: 22, weight: .bold))
                 
                 Text("iOS Developer")
@@ -33,7 +33,7 @@ struct ProfileView: View {
                     Text(StringConstants.fullName.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
-                    Text("Testing Ios")
+                    Text("\(AppSessionManager.shared.fullName ?? "")")
                         .font(.system(size: 18, weight: .semibold))
                     
                     Divider()
@@ -50,7 +50,7 @@ struct ProfileView: View {
                     Text(StringConstants.email.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
-                    Text("testing@gmail.com")
+                    Text("\(AppSessionManager.shared.emailDisplay ?? "")")
                         .font(.system(size: 18, weight: .semibold))
                     
                     Divider()
@@ -101,7 +101,7 @@ struct ProfileView: View {
                     Text(StringConstants.joined.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
-                    Text("April 15, 2022")
+                    Text("\(AppSessionManager.shared.joined ?? "")")
                         .font(.system(size: 18, weight: .semibold))
                     
                     Divider()
@@ -133,7 +133,6 @@ struct ProfileView: View {
                 .cornerRadius(8)
                 
             }
-            
             
             Spacer()
             
