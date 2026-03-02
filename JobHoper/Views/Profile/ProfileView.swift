@@ -30,7 +30,7 @@ struct ProfileView: View {
                     .font(.system(size: 22, weight: .semibold))
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Full Name")
+                    Text(StringConstants.fullName.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
                     Text("Testing Ios")
@@ -47,7 +47,7 @@ struct ProfileView: View {
                     .font(.system(size: 22, weight: .semibold))
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Email")
+                    Text(StringConstants.email.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
                     Text("testing@gmail.com")
@@ -64,7 +64,7 @@ struct ProfileView: View {
                     .font(.system(size: 22, weight: .semibold))
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Phone")
+                    Text(StringConstants.phone.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
                     Text("+63 912 345 6789")
@@ -81,7 +81,7 @@ struct ProfileView: View {
                     .font(.system(size: 22, weight: .semibold))
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Address")
+                    Text(StringConstants.address.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
                     Text("123 Sample Street, City, Country")
@@ -98,7 +98,7 @@ struct ProfileView: View {
                     .font(.system(size: 22, weight: .semibold))
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Joined")
+                    Text(StringConstants.joined.rawValue)
                         .font(.system(size: 18, weight: .regular))
                     
                     Text("April 15, 2022")
@@ -114,7 +114,7 @@ struct ProfileView: View {
             Spacer()
             
             HStack(spacing: 20) {
-                Button("BACK") {
+                Button(StringConstants.back.rawValue) {
                     dismiss()
                 }
                 .padding()
@@ -123,7 +123,7 @@ struct ProfileView: View {
                 .font(.system(size: 18, weight: .semibold))
                 .cornerRadius(8)
                 
-                Button("LOGOUT") {
+                Button(StringConstants.logout.rawValue) {
                     AppSessionManager.shared.logout()
                 }
                 .padding()

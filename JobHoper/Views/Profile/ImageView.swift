@@ -13,11 +13,19 @@ struct ImageView: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            Image(uiImage: viewModel.selectedImage ?? UIImage())
-                .resizable()
-                .scaledToFill()
-                .frame(width: 90, height: 90)
-                .clipShape(Circle())
+            if let selectedImage = viewModel.selectedImage {
+                Image(uiImage: selectedImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 90, height: 90)
+                    .clipShape(Circle())
+            } else {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 90, height: 90)
+                    .clipShape(Circle())
+            }
             
             PhotosPicker(selection: $viewModel.selectedItem, matching: .images) {
                 Image(systemName: "camera.fill")
