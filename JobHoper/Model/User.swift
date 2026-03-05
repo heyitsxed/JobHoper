@@ -12,7 +12,7 @@ struct User: Codable {
     let firstName: String
     let lastName: String
     let email: String
-    let password: String
+    var password: String
     let createdAt: Date
     
     var fullName: String {

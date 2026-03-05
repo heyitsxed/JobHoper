@@ -51,4 +51,11 @@ enum StringConstants: String {
     case joined = "Joined"
     case back = "BACK"
     case logout = "LOGOUT"
+    
+    case forgotPasswordTitle = "Forgot Password"
+    case resetPassword = "Reset password"
+    case checkEmail = "Check email"
+    case emailAddress = "Email Address"
+    case backToSignIn = "Back to sign in"
+    case enterNewPassword = "Enter New Password"
 }

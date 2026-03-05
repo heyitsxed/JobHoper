@@ -11,27 +11,28 @@ struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
     
     @State private var isShowSignUp: Bool = false
+    @State private var isShowForgotPassword: Bool = false
     
     var body: some View {
         VStack(spacing: 68) {
             
             Spacer()
-
+            
             VStack(spacing: 6) {
                 Text(StringConstants.welcomeUser.rawValue)
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.blue)
-
+                
                 Text(StringConstants.loginToYourAccount.rawValue)
                     .font(.system(size: 16))
                     .foregroundColor(.gray)
             }
-
+            
             VStack(spacing: 16) {
                 HStack {
                     Image(systemName: "envelope.fill")
                         .foregroundColor(.blue)
-
+                    
                     TextField(StringConstants.email.rawValue, text: $viewModel.currentEmail)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
@@ -42,7 +43,7 @@ struct LoginView: View {
                 HStack {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.blue)
-
+                    
                     SecureField(StringConstants.password.rawValue, text: $viewModel.currentPassword)
                 }
                 .modifier(InputFieldStyle())
@@ -54,11 +55,11 @@ struct LoginView: View {
                         .font(.system(size: 16))
                         .foregroundColor(.gray)
                         .onTapGesture {
-                            print("Forgot password")
+                            isShowForgotPassword = true
                         }
                 }
             }
-
+            
             Button(action: viewModel.login) {
                 if viewModel.isLoading {
                     ProgressView()
@@ -76,21 +77,24 @@ struct LoginView: View {
             .cornerRadius(12)
             .shadow(color: .blue.opacity(0.3), radius: 8, y: 4)
             .disabled(viewModel.isLoading)
-
+            
             HStack {
                 Text(StringConstants.dontHaveAccount.rawValue)
                     .foregroundColor(.gray)
-
+                
                 Button(StringConstants.signUp.rawValue) {
                     isShowSignUp = true
                 }
                 .foregroundColor(.blue)
                 .fontWeight(.semibold)
             }
-
+            
             Spacer()
         }
         .padding()
+        .fullScreenCover(isPresented: $isShowForgotPassword) {
+            ForgotPasswordView()
+        }
         .fullScreenCover(isPresented: $isShowSignUp) {
             SignUpView()
         }
