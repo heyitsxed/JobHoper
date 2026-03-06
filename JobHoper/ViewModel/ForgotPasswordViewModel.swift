@@ -29,8 +29,7 @@ class ForgotPasswordViewModel: ObservableObject {
         
         var updatedUser = users
         updatedUser[index].password = newPassword
-        
-        users = updatedUser
+        AppSessionManager.shared.users = updatedUser
     }
 
 }
