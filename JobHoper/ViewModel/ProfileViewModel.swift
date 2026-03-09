@@ -16,6 +16,10 @@ class ProfileViewModel: ObservableObject {
     }
     
     @Published var selectedImage: UIImage?
+    @Published var editPhoneNumber: String = ""
+    @Published var editAddress: String = ""
+    @Published var isEditingPhone: Bool = false
+    @Published var isEditingAddress: Bool = false
     
     init() {
         selectedImage = loadSavedImage()

@@ -11,7 +11,8 @@ struct ContentView: View {
     @State private var isShowHomePage: Bool = false
     
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
-    
+    @AppStorage("theme") private var isDarkMode: Bool = false
+
     private let splashScreenDurationn: Double = 2.5
     
     var body: some View {
