@@ -10,12 +10,13 @@ import SwiftUI
 struct HomePageView: View {
     @StateObject private var viewModel = JobViewModel()
     @State private var isShowProfile: Bool = false
-    
+    @AppStorage("theme") private var isDarkMode: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text(StringConstants.jobTitle.rawValue)
-                    .foregroundColor(.black)
+                    .foregroundColor(isDarkMode ? .white : .black)
                     .font(.system(size: 22, weight: .semibold))
                     .textCase(.uppercase)
                     .padding(.leading, 15)
@@ -25,7 +26,7 @@ struct HomePageView: View {
                 Image(systemName: "person.circle")
                     .font(.system(size: 25))
                     .padding(.trailing, 15)
-                    .foregroundColor(.black)
+                    .foregroundColor(isDarkMode ? .white : .black)
                     .onTapGesture {
                         isShowProfile = true
                     }
@@ -36,7 +37,7 @@ struct HomePageView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.blue)
                     
-                    TextField(StringConstants.jobSearchPlaceHolder.rawValue, text: $viewModel.searchText)
+                    TextField("", text: $viewModel.searchText, prompt: Text(StringConstants.jobSearchPlaceHolder.rawValue).foregroundColor(.black))
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                     

@@ -32,6 +32,7 @@ struct ContentView: View {
                     .zIndex(1)
             }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + splashScreenDurationn) {
                 withAnimation { self.isShowHomePage = true }

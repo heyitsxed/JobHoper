@@ -32,8 +32,9 @@ struct ForgotPasswordView: View {
                     Spacer()
                 }
                 
-                TextField(StringConstants.email.rawValue, text: $viewModel.forgotEmail)
+                TextField("", text: $viewModel.forgotEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.black))
                     .textInputAutocapitalization(.never)
+                    .foregroundColor(.black)
                     .modifier(InputFieldStyle())
                 
                 if viewModel.isUserFound {

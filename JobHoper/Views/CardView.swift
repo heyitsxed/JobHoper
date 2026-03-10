@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CardView: View {
     @State var isPresent: Bool = false
-    
+    @AppStorage("theme") private var isDarkMode: Bool = false
+
     var company: Company?
     
     var body: some View {
@@ -29,8 +30,11 @@ struct CardView: View {
                 VStack(alignment: .leading,spacing: 10) {
                     Text(company?.title ?? "")
                         .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(.black)
+
                     Text(company?.companyName ?? "")
                         .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.black)
                     
                     HStack {
                         Text(company?.remote == true ? StringConstants.wfh.rawValue : StringConstants.wfo.rawValue)
@@ -52,9 +56,12 @@ struct CardView: View {
                     
                     Text(company?.tags.joined(separator: ", ") ?? "")
                         .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.black)
+
                     
                     Text(company?.jobTypes.joined(separator: ", ") ?? "")
                         .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.black)
                     
                 }
                 .padding()

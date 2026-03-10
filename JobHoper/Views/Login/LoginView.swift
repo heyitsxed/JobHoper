@@ -33,7 +33,8 @@ struct LoginView: View {
                     Image(systemName: "envelope.fill")
                         .foregroundColor(.blue)
                     
-                    TextField(StringConstants.email.rawValue, text: $viewModel.currentEmail)
+                    TextField("",text: $viewModel.currentEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.black))
+                        .foregroundColor(.black)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -44,7 +45,8 @@ struct LoginView: View {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.blue)
                     
-                    SecureField(StringConstants.password.rawValue, text: $viewModel.currentPassword)
+                    SecureField("", text: $viewModel.currentPassword, prompt: Text(StringConstants.password.rawValue).foregroundColor(.black))
+                        .foregroundColor(.black)
                 }
                 .modifier(InputFieldStyle())
                 
