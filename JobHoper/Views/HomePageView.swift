@@ -37,7 +37,8 @@ struct HomePageView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.blue)
                     
-                    TextField("", text: $viewModel.searchText, prompt: Text(StringConstants.jobSearchPlaceHolder.rawValue).foregroundColor(.black))
+                    TextField("", text: $viewModel.searchText, prompt: Text(StringConstants.jobSearchPlaceHolder.rawValue).foregroundColor(.gray))
+                        .foregroundColor(.black)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                     

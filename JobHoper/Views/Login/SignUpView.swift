@@ -33,7 +33,7 @@ struct SignUpView: View {
                         Image(systemName: "person.fill")
                             .foregroundColor(.blue)
                         
-                        TextField("", text: $viewModel.newFirstName, prompt: Text(StringConstants.firstName.rawValue).foregroundColor(.black))
+                        TextField("", text: $viewModel.newFirstName, prompt: Text(StringConstants.firstName.rawValue).foregroundColor(.gray))
                             .autocapitalization(.words)
                             .foregroundColor(.black)
                         
@@ -49,7 +49,7 @@ struct SignUpView: View {
                         Image(systemName: "person.fill")
                             .foregroundColor(.blue)
                         
-                        TextField("", text: $viewModel.newLastName, prompt: Text(StringConstants.lastName.rawValue).foregroundColor(.black))
+                        TextField("", text: $viewModel.newLastName, prompt: Text(StringConstants.lastName.rawValue).foregroundColor(.gray))
                             .autocapitalization(.words)
                             .foregroundColor(.black)
                         
@@ -66,7 +66,7 @@ struct SignUpView: View {
                     Image(systemName: "envelope.fill")
                         .foregroundColor(.blue)
                     
-                    TextField("", text: $viewModel.newEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.black))
+                    TextField("", text: $viewModel.newEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.gray))
                         .keyboardType(.emailAddress)
                         .foregroundColor(.black)
                         .autocapitalization(.none)
@@ -84,7 +84,7 @@ struct SignUpView: View {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.blue)
                     
-                    SecureField("", text: $viewModel.newPassword, prompt: Text(StringConstants.password.rawValue).foregroundColor(.black))
+                    SecureField("", text: $viewModel.newPassword, prompt: Text(StringConstants.password.rawValue).foregroundColor(.gray))
                         .foregroundColor(.black)
 
                     if let passwordError = viewModel.passwordError {
@@ -99,7 +99,7 @@ struct SignUpView: View {
                     Image(systemName: "lock.fill")
                         .foregroundColor(.blue)
                     
-                    SecureField("", text: $viewModel.confirmPassword, prompt: Text(StringConstants.confirmPassword.rawValue).foregroundColor(.black))
+                    SecureField("", text: $viewModel.confirmPassword, prompt: Text(StringConstants.confirmPassword.rawValue).foregroundColor(.gray))
                         .foregroundColor(.black)
                     
                     if let confirmPasswordError = viewModel.confirmPasswordError {

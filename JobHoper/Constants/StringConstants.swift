@@ -53,6 +53,7 @@ enum StringConstants: String {
     case logout = "LOGOUT"
     
     case forgotPasswordTitle = "Forgot Password"
+    case forgotPasswordSubTitle = "Don't worry, we'll help you reset it."
     case resetPassword = "Reset password"
     case checkEmail = "Check email"
     case emailAddress = "Email Address"

@@ -17,12 +17,17 @@ struct ForgotPasswordView: View {
             
             Spacer()
             
-            Text(StringConstants.forgotPasswordTitle.rawValue)
-                .font(.system(size: 32, weight: .bold))
-                .foregroundColor(.blue)
-                .padding(.bottom, 110)
-            
-            
+            VStack(spacing: 6) {
+                Text(StringConstants.forgotPasswordTitle.rawValue)
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundColor(.blue)
+                
+                Text(StringConstants.forgotPasswordSubTitle.rawValue)
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 110)
+            }
+
             VStack(spacing: 15) {
                 HStack {
                     Text(StringConstants.emailAddress.rawValue)
@@ -32,7 +37,7 @@ struct ForgotPasswordView: View {
                     Spacer()
                 }
                 
-                TextField("", text: $viewModel.forgotEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.black))
+                TextField("", text: $viewModel.forgotEmail, prompt: Text(StringConstants.email.rawValue).foregroundColor(.gray))
                     .textInputAutocapitalization(.never)
                     .foregroundColor(.black)
                     .modifier(InputFieldStyle())
