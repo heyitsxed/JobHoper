@@ -121,6 +121,7 @@ struct SignUpView: View {
                 }
             }
             .frame(maxWidth: .infinity)
+            .frame(height: 20)
             .padding()
             .background(Color.blue)
             .foregroundColor(.white)

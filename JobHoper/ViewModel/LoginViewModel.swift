@@ -14,23 +14,24 @@ class LoginViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     @Published var isShowErrorMessage: Bool = false
-    private var users = AppSessionManager.shared.users
     
     var isExistingUser: Bool {
-        users.contains(where: { $0.email == currentEmail && $0.password == currentPassword })
+        AppSessionManager.shared.users.contains(where: { $0.email == currentEmail && $0.password == currentPassword })
     }
     
     func login() {
         isLoading = true
         
         guard isExistingUser else {
-            isShowErrorMessage = true
-            isLoading = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.isShowErrorMessage = true
+                self.isLoading = false
+            }
             return
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if let user = self.users.first(where: { $0.email == self.currentEmail }) {
+            if let user = AppSessionManager.shared.users.first(where: { $0.email == self.currentEmail }) {
                 AppSessionManager.shared.signIn(user: user)
             }
             self.isLoading = false
