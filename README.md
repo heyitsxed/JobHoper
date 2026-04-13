@@ -53,7 +53,9 @@ A simple Job Application mobile app that allows users to create an account, sear
 ---
 
 ## Video
-* TODO
+https://github.com/user-attachments/assets/22bfb036-411c-45c3-b8ab-f4f25e5bbb20
+
+
 ---
 ## Installation
 1. Clone the repository:
